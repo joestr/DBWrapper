@@ -1,4 +1,4 @@
-package xyz.joestr.databasex;
+package xyz.joestr.dbwrapper;
 
 import java.lang.reflect.Field;
 import java.sql.PreparedStatement;
@@ -9,11 +9,11 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 /**
- * Wraps around a given class, which implements {@link xyz.joestr.databasex.DatabaseWrapable}.
+ * Wraps around a given class, which implements {@link xyz.joestr.dbwrapper.DatabaseWrapable}.
  * @author Joel Strasser (joestr)
  * @version 0.1.0
  * @since 0.1.0
- * @param <T> Class which implements {@link xyz.joestr.databasex.DatabaseWrapable}
+ * @param <T> Class which implements {@link xyz.joestr.dbwrapper.DatabaseWrapable}
  */
 public class DatabaseWrapper<T extends DatabaseWrapable> {
     
@@ -26,8 +26,8 @@ public class DatabaseWrapper<T extends DatabaseWrapable> {
     private final Collection<Class> fieldClasses;
     
     /**
-     * Creates a new instance of the {@link xyz.joestr.databasex.DatabaseWrapper}.
-     * @param databaseConnectionHandler The {@link xyz.joestr.databasex.DatabaseConnectionHandler}
+     * Creates a new instance of the {@link xyz.joestr.dbwrapper.DatabaseWrapper}.
+     * @param databaseConnectionHandler The {@link xyz.joestr.dbwrapper.DatabaseConnectionHandler}
      * @param clazz The {@link java.lang.Class}
      * @throws InstantiationException If the instantiation fails
      * @throws IllegalAccessException If the access is prohibited

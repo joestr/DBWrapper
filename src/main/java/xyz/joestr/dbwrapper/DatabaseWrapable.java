@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package xyz.joestr.databasex;
+package xyz.joestr.dbwrapper;
 
 import java.util.Collection;
 
 /**
  * Classes which implement this interface can be used by the
- * {@link xyz.joestr.databasex.DatabaseWrapper}.
+ * {@link xyz.joestr.dbwrapper.DatabaseWrapper}.
  * @author Joel Strasser (joestr)
  * @version 0.1.0
  * @since 0.1.0

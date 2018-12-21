@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package xyz.joestr.databasex;
+package xyz.joestr.dbwrapper;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -22,7 +22,7 @@ public class DatabaseConnectionHandler {
     private boolean persistentConnection = false;
     
     /**
-     * Create an instance of {@link xyz.joestr.databasex.DatabaseConnectionHandler}.
+     * Create an instance of {@link xyz.joestr.dbwrapper.DatabaseConnectionHandler}.
      * @param connectionString The connection string;
      */
     public DatabaseConnectionHandler(String connectionString) {
