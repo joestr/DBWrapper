@@ -1,14 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    
     <groupId>xyz.joestr</groupId>
     <artifactId>dbwrapper</artifactId>
     <version>0.1.2</version>
+    
     <packaging>jar</packaging>
+    
+    <name>DBWrapper</name>
+    <description>Is some kind of a wrapper for classes to easily interact with a database.</description>
+    <url>https://github.com/joestr/DBWrapper/</url>
+    
+    <organization>
+        <name>joestr</name>
+        <url>https://joestr.xyz</url>
+    </organization>
+    
+    <scm>
+        <url>https://github.com/joestr/DBWrapper/</url>
+        <connection>scm:git:https://github.com/joestr/DBWrapper.git</connection>
+        <developerConnection>scm:git:https://github.com/joestr/DBWrapper.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+    
+    <!--<ciManagement>
+        <url>https://ci.joestr.xyz/job/ZoneMenu/</url>
+        <system>Jenkins</system>
+        <notifiers>
+            <notifier>
+                <type>mail</type>
+                <sendOnError>true</sendOnError>
+                <sendOnFailure>true</sendOnFailure>
+                <sendOnSuccess>false</sendOnSuccess>
+                <sendOnWarning>false</sendOnWarning>
+                <configuration>
+                    <address>mail@joestr.xyz</address>
+                </configuration>
+            </notifier>
+        </notifiers>
+    </ciManagement>-->
+    
+    <issueManagement>
+        <url>https://github.com/joestr/DBWrapper/issues</url>
+    </issueManagement>
+    
+    <distributionManagement>
+        <repository>
+            <id>joestr-repository</id>
+            <name>joestr Repository</name>
+            <url>https://repo.joestr.xyz/maven/repository/repository/</url>
+        </repository>
+        <snapshotRepository>
+            <id>joestr-repository</id>
+            <name>joestr Repository</name>
+            <url>https://repo.joestr.xyz/maven/repository/repository/</url>
+        </snapshotRepository>
+        <!--<downloadUrl></downloadUrl>-->
+        <!--<status></status>-->
+    </distributionManagement>
+    
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
-    <name>DBWrapper</name>
+    
+    <repositories>
+        <repository>
+            <id>joestr-repository</id>
+            <name>joestr Repository</name>
+            <url>https://repo.joestr.xyz/maven/repository/repository/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    
+    <pluginRepositories>
+        <pluginRepository>
+            <id>joestr-repository</id>
+            <name>joestr Repository</name>
+            <url>https://repo.joestr.xyz/maven/repository/repository/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 </project>
