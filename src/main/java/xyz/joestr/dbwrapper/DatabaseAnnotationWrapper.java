@@ -14,12 +14,11 @@ import xyz.joestr.dbwrapper.annotations.WrappedTable;
  * Wraps around a given class, which implements
  * {@link xyz.joestr.dbwrapper.DatabaseWrapable}.
  *
- * @author Joel Strasser (joestr)
- * @version 0.1.0
- * @since 0.1.0
  * @param <T> Class which is annotated by
  * {@link xyz.joestr.dbwrapper.annotations.WrappedTable} and at least one field
  * is annotated by {@link xyz.joestr.dbwrapper.annotations.WrappedField}.
+ * @author Joel Strasser (joestr)
+ * @version ${project.version}
  */
 public class DatabaseAnnotationWrapper<T> {
 
@@ -41,7 +40,6 @@ public class DatabaseAnnotationWrapper<T> {
      * @throws IllegalAccessException If the access is prohibited
      * @author Joel Strasser (joestr)
      * @version ${project.version}
-     * @since ${project.version}
      */
     public DatabaseAnnotationWrapper(Class<T> clazz, DatabaseConnectionHandler databaseConnectionHandler) throws InstantiationException, IllegalAccessException {
 
