@@ -12,11 +12,10 @@ import java.util.stream.Collectors;
  * Wraps around a given class, which implements
  * {@link xyz.joestr.dbwrapper.DatabaseWrapable}.
  *
- * @author Joel Strasser (joestr)
- * @version 0.1.0
- * @since 0.1.0
  * @param <T> Class which implements
  * {@link xyz.joestr.dbwrapper.DatabaseWrapable}
+ * @author Joel Strasser (joestr)
+ * @version ${project.version}
  */
 public class DatabaseWrapper<T extends DatabaseWrapable> {
 
@@ -37,8 +36,7 @@ public class DatabaseWrapper<T extends DatabaseWrapable> {
      * @throws InstantiationException If the instantiation fails
      * @throws IllegalAccessException If the access is prohibited
      * @author Joel Strasser (joestr)
-     * @version 0.1.2
-     * @since 0.1.0
+     * @version ${project.version}
      */
     public DatabaseWrapper(Class<T> clazz, DatabaseConnectionHandler databaseConnectionHandler) throws InstantiationException, IllegalAccessException {
 
@@ -59,8 +57,7 @@ public class DatabaseWrapper<T extends DatabaseWrapable> {
      * @throws IllegalAccessException If the access is prohibited
      * @throws NoSuchFieldException If the field does not exist
      * @author Joel Strasser (joestr)
-     * @version 0.1.2
-     * @since 0.1.0
+     * @version ${project.version}
      */
     public Collection<T> select() throws SQLException, InstantiationException, IllegalAccessException, NoSuchFieldException {
 
@@ -115,8 +112,7 @@ public class DatabaseWrapper<T extends DatabaseWrapable> {
      * @throws IllegalAccessException If the access is prohibited
      * @throws NoSuchFieldException If the field does not exist
      * @author Joel Strasser (joestr)
-     * @version 0.1.2
-     * @since 0.1.1
+     * @version ${project.version}
      */
     public Collection<T> select(String condition) throws NullPointerException, SQLException, InstantiationException, IllegalAccessException, NoSuchFieldException {
 
@@ -173,8 +169,7 @@ public class DatabaseWrapper<T extends DatabaseWrapable> {
      * @throws NoSuchFieldException If the field does not exist
      * @throws IllegalAccessException If the access is prohibited
      * @author Joel Strasser (joestr)
-     * @version 0.1.2
-     * @since 0.1.0
+     * @version ${project.version}
      */
     public int insert(T object) throws SQLException, NoSuchFieldException, IllegalAccessException {
 
@@ -233,8 +228,7 @@ public class DatabaseWrapper<T extends DatabaseWrapable> {
      * @throws NoSuchFieldException If the field does not exist
      * @throws IllegalAccessException If the access is prohibited
      * @author Joel Strasser (joestr)
-     * @version 0.1.2
-     * @since 0.1.0
+     * @version ${project.version}
      */
     public int update(T oldObject, T newObject) throws SQLException, NoSuchFieldException, IllegalAccessException {
 
@@ -288,8 +282,7 @@ public class DatabaseWrapper<T extends DatabaseWrapable> {
      * @throws NoSuchFieldException If the field does not exist
      * @throws IllegalAccessException If the access is prohibited
      * @author Joel Strasser (joestr)
-     * @version 0.1.2
-     * @since 0.1.0
+     * @version ${project.version}
      */
     public int delete(T object) throws SQLException, NoSuchFieldException, IllegalAccessException {
 

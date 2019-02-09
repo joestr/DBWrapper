@@ -12,8 +12,7 @@ import java.util.Collection;
  * {@link xyz.joestr.dbwrapper.DatabaseWrapper}.
  *
  * @author Joel Strasser (joestr)
- * @version 0.1.2
- * @since 0.1.0
+ * @version ${project.version}
  */
 public interface DatabaseWrapable {
 
@@ -22,8 +21,7 @@ public interface DatabaseWrapable {
      *
      * @return {@link java.lang.String} Name of the table
      * @author Joel Strasser (joestr)
-     * @version 0.1.2
-     * @since 0.1.0
+     * @version ${project.version}
      */
     public String databaseTableName();
 
@@ -33,8 +31,7 @@ public interface DatabaseWrapable {
      * @return {@link java.util.Collection}&lt;{@link java.lang.String}&gt; Name
      * of the columns in the database
      * @author Joel Strasser (joestr)
-     * @version 0.1.2
-     * @since 0.1.0
+     * @version ${project.version}
      */
     public Collection<String> databaseColumnNames();
 
@@ -44,8 +41,7 @@ public interface DatabaseWrapable {
      * @return {@link java.util.Collection}&lt;{@link java.lang.String}&gt; Name
      * of the fields in the implementing class
      * @author Joel Strasser (joestr)
-     * @version 0.1.2
-     * @since 0.1.0
+     * @version ${project.version}
      */
     public Collection<String> classFieldNames();
 }

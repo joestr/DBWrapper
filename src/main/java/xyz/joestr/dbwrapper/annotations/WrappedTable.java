@@ -10,7 +10,7 @@ import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
 
-public @interface DatabaseField {
+public @interface WrappedTable {
 
     String name();
 }

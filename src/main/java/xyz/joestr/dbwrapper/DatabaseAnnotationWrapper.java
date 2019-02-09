@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Collectors;
-import xyz.joestr.dbwrapper.annotations.DatabaseField;
-import xyz.joestr.dbwrapper.annotations.DatabaseTable;
+import xyz.joestr.dbwrapper.annotations.WrappedField;
+import xyz.joestr.dbwrapper.annotations.WrappedTable;
 
 /**
  * Wraps around a given class, which implements
@@ -17,8 +17,9 @@ import xyz.joestr.dbwrapper.annotations.DatabaseTable;
  * @author Joel Strasser (joestr)
  * @version 0.1.0
  * @since 0.1.0
- * @param <T> Class which implements
- * {@link xyz.joestr.dbwrapper.DatabaseWrapable}
+ * @param <T> Class which is annotated by
+ * {@link xyz.joestr.dbwrapper.annotations.WrappedTable} and at least one field
+ * is annotated by {@link xyz.joestr.dbwrapper.annotations.WrappedField}.
  */
 public class DatabaseAnnotationWrapper<T> {
 
@@ -39,8 +40,8 @@ public class DatabaseAnnotationWrapper<T> {
      * @throws InstantiationException If the instantiation fails
      * @throws IllegalAccessException If the access is prohibited
      * @author Joel Strasser (joestr)
-     * @version 0.1.2
-     * @since 0.1.0
+     * @version ${project.version}
+     * @since ${project.version}
      */
     public DatabaseAnnotationWrapper(Class<T> clazz, DatabaseConnectionHandler databaseConnectionHandler) throws InstantiationException, IllegalAccessException {
 
@@ -63,8 +64,7 @@ public class DatabaseAnnotationWrapper<T> {
      * @throws IllegalAccessException If the access is prohibited
      * @throws NoSuchFieldException If the field does not exist
      * @author Joel Strasser (joestr)
-     * @version 0.1.2
-     * @since 0.1.0
+     * @version ${project.version}
      */
     public Collection<T> select() throws SQLException, InstantiationException, IllegalAccessException, NoSuchFieldException {
 
@@ -119,8 +119,7 @@ public class DatabaseAnnotationWrapper<T> {
      * @throws IllegalAccessException If the access is prohibited
      * @throws NoSuchFieldException If the field does not exist
      * @author Joel Strasser (joestr)
-     * @version 0.1.2
-     * @since 0.1.1
+     * @version ${project.version}
      */
     public Collection<T> select(String condition) throws NullPointerException, SQLException, InstantiationException, IllegalAccessException, NoSuchFieldException {
 
@@ -177,8 +176,7 @@ public class DatabaseAnnotationWrapper<T> {
      * @throws NoSuchFieldException If the field does not exist
      * @throws IllegalAccessException If the access is prohibited
      * @author Joel Strasser (joestr)
-     * @version 0.1.2
-     * @since 0.1.0
+     * @version ${project.version}
      */
     public int insert(T object) throws SQLException, NoSuchFieldException, IllegalAccessException {
 
@@ -237,8 +235,7 @@ public class DatabaseAnnotationWrapper<T> {
      * @throws NoSuchFieldException If the field does not exist
      * @throws IllegalAccessException If the access is prohibited
      * @author Joel Strasser (joestr)
-     * @version 0.1.2
-     * @since 0.1.0
+     * @version ${project.version}
      */
     public int update(T oldObject, T newObject) throws SQLException, NoSuchFieldException, IllegalAccessException {
 
@@ -292,8 +289,7 @@ public class DatabaseAnnotationWrapper<T> {
      * @throws NoSuchFieldException If the field does not exist
      * @throws IllegalAccessException If the access is prohibited
      * @author Joel Strasser (joestr)
-     * @version 0.1.2
-     * @since 0.1.0
+     * @version ${project.version}
      */
     public int delete(T object) throws SQLException, NoSuchFieldException, IllegalAccessException {
 
@@ -327,24 +323,36 @@ public class DatabaseAnnotationWrapper<T> {
         return result;
     }
 
+    /**
+     * Resolves the annotated class for the table name.
+     *
+     * @author Joel Strasser (joestr)
+     * @version ${project.version}
+     */
     private void resolveDatabaseTableName() {
 
-        if (this.clazz.isAnnotationPresent(DatabaseTable.class)) {
-            DatabaseTable databaseTable
-                = this.clazz.getAnnotation(DatabaseTable.class);
+        if (this.clazz.isAnnotationPresent(WrappedTable.class)) {
+            WrappedTable databaseTable
+                = this.clazz.getAnnotation(WrappedTable.class);
 
             this.tableName = databaseTable.name();
         }
     }
 
+    /**
+     * Resolves the annotated field(s) for the column names and the field names.
+     *
+     * @author Joel Strasser (joestr)
+     * @version ${project.version}
+     */
     private void resolveDatabaseColumnNamesAndClassFieldNames() {
 
         for (Field f : this.clazz.getFields()) {
 
             f.setAccessible(true);
-            if (f.isAnnotationPresent(DatabaseField.class)) {
-                DatabaseField databaseField
-                    = f.getAnnotation(DatabaseField.class);
+            if (f.isAnnotationPresent(WrappedField.class)) {
+                WrappedField databaseField
+                    = f.getAnnotation(WrappedField.class);
 
                 this.columnNames.add(
                     databaseField.name()
