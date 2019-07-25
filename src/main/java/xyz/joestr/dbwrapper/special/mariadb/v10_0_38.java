@@ -20,12 +20,12 @@ public class v10_0_38 {
     }
 
     /**
-     * Disables the foreign key check.
+     * Disables foreign key checks.
      *
      * @return {@code true} if successfull; {@code false} if not
      * @throws SQLException If something SQL relevant fails
      */
-    public boolean disableForeignKeyCheck() throws SQLException {
+    public boolean disableForeignKeyChecks() throws SQLException {
 
         boolean result = true;
 
@@ -44,7 +44,7 @@ public class v10_0_38 {
     }
 
     /**
-     * Enables the foreign key check.
+     * Enables foreign key checks.
      *
      * @return {@code true} if successfull; {@code false} if not
      * @throws SQLException If something SQL relevant fails
@@ -79,8 +79,6 @@ public class v10_0_38 {
 
         // Connect
         this.databaseConnectionHandler.connect();
-
-        Statement statement = this.databaseConnectionHandler.getConnection().createStatement();
 
         // Possible SQL-Injection here, so we have to use a prepared statement
         PreparedStatement tableNamesStatement
@@ -147,7 +145,6 @@ public class v10_0_38 {
     /**
      * Delete all tables in the database.
      *
-     * @param databaseName The name od the database.
      * @return {@code true} if successfull; {@code false} if one or more tables
      * could not be deleted
      * @throws SQLException If something SQL relevant fails
