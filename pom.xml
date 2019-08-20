@@ -5,7 +5,6 @@
     <groupId>xyz.joestr</groupId>
     <artifactId>dbwrapper</artifactId>
     <version>0.1.2</version>
-    
     <packaging>jar</packaging>
     
     <name>DBWrapper</name>
@@ -46,18 +45,16 @@
     </issueManagement>
     
     <distributionManagement>
-        <repository>
-            <id>joestr-repository</id>
-            <name>joestr Repository</name>
-            <url>https://repo.joestr.xyz/maven/repository/repository/</url>
-        </repository>
         <snapshotRepository>
-            <id>joestr-repository</id>
-            <name>joestr Repository</name>
-            <url>https://repo.joestr.xyz/maven/repository/repository/</url>
+            <id>ossrh</id>
+            <name>Sonatype Central Repository</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
-        <!--<downloadUrl></downloadUrl>-->
-        <!--<status></status>-->
+        <repository>
+            <id>ossrh</id>
+            <name>Sonatype Central Repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
     </distributionManagement>
     
     <properties>
@@ -68,7 +65,7 @@
     <repositories>
         <repository>
             <id>joestr-repository</id>
-            <name>joestr Repository</name>
+            <name>joestr's Maven Repository</name>
             <url>https://repo.joestr.xyz/maven/repository/repository/</url>
             <releases>
                 <enabled>true</enabled>
@@ -91,7 +88,7 @@
     <pluginRepositories>
         <pluginRepository>
             <id>joestr-repository</id>
-            <name>joestr Repository</name>
+            <name>joestr's Maven Repository</name>
             <url>https://repo.joestr.xyz/maven/repository/repository/</url>
             <releases>
                 <enabled>true</enabled>
@@ -131,34 +128,36 @@
             </plugin>
             -->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.0.1</version>
-                <configuration>
-                    <doclint>none</doclint>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.1.1</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<doclint>none</doclint>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>3.0.1</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -167,6 +166,20 @@
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

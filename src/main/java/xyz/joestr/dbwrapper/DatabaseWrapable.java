@@ -20,8 +20,6 @@ public interface DatabaseWrapable {
      * Defines the name of the table in the database.
      *
      * @return {@link java.lang.String} Name of the table
-     * @author Joel Strasser (joestr)
-     * @version ${project.version}
      */
     public String databaseTableName();
 
@@ -30,8 +28,6 @@ public interface DatabaseWrapable {
      *
      * @return {@link java.util.Collection}&lt;{@link java.lang.String}&gt; Name
      * of the columns in the database
-     * @author Joel Strasser (joestr)
-     * @version ${project.version}
      */
     public Collection<String> databaseColumnNames();
 
@@ -40,8 +36,6 @@ public interface DatabaseWrapable {
      *
      * @return {@link java.util.Collection}&lt;{@link java.lang.String}&gt; Name
      * of the fields in the implementing class
-     * @author Joel Strasser (joestr)
-     * @version ${project.version}
      */
     public Collection<String> classFieldNames();
 }

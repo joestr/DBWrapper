@@ -26,8 +26,6 @@ public class DatabaseConnectionHandler {
      * {@link xyz.joestr.dbwrapper.DatabaseConnectionHandler}.
      *
      * @param connectionString The connection string
-     * @author Joel Strasser (joestr)
-     * @version ${project.version}
      */
     public DatabaseConnectionHandler(String connectionString) {
 
@@ -38,8 +36,6 @@ public class DatabaseConnectionHandler {
      * Connects to a database using the {@code connectionString}.
      *
      * @throws SQLException If something SQL relevant fails
-     * @author Joel Strasser (joestr)
-     * @version ${project.version}
      */
     public void connect() throws SQLException {
 
@@ -60,8 +56,6 @@ public class DatabaseConnectionHandler {
      * Disconnects form a database.
      *
      * @throws SQLException If something SQL relevant fails
-     * @author Joel Strasser (joestr)
-     * @version ${project.version}
      */
     public void disconnect() throws SQLException {
 
@@ -77,8 +71,6 @@ public class DatabaseConnectionHandler {
      * Returns the {@code connectionString}.
      *
      * @return The {@link java.lang.String connectionString}
-     * @author Joel Strasser (joestr)
-     * @version ${project.version}
      */
     public String getConnectionString() {
         return this.connectionString;
@@ -88,8 +80,6 @@ public class DatabaseConnectionHandler {
      * Returns the {@code connection}.
      *
      * @return The {@link java.sql.Connection} to the database
-     * @author Joel Strasser (joestr)
-     * @version ${project.version}
      */
     public Connection getConnection() {
         return this.connection;
@@ -100,8 +90,6 @@ public class DatabaseConnectionHandler {
      * operation. Else {@code false}.
      *
      * @return A {@code boolean}
-     * @author Joel Strasser (joestr)
-     * @version ${project.version}
      */
     public boolean isPersistentConnection() {
         return persistentConnection;
@@ -111,9 +99,7 @@ public class DatabaseConnectionHandler {
      * Set the flag, if the connection should not be closed after an operation.
      *
      * @param persistentConnection If the connection should not be closed after
-     * an operation
-     * @author Joel Strasser (joestr)
-     * @version ${project.version}
+     * an operation.
      */
     public void setPersistentConnection(boolean persistentConnection) {
         this.persistentConnection = persistentConnection;
