@@ -29,95 +29,60 @@ import xyz.joestr.dbwrapper.thirdparty.net.dertod2.DatabaseHandler.Table.EntryHa
  *
  */
 public class DatabaseHandler {
-    public static boolean debugMode;
 
     private static DatabaseHandler databaseHandler;
+    
     private static AbstractDatabase abstractDatabase;
-    private static EntryHandler entryHandler;
 
-
-    public DatabaseHandler(boolean debugMode, String databaseTyper, int port, String host, String database, String username, String password, File folder) {
-
-        DatabaseHandler.databaseHandler = this;
-
-        DatabaseHandler.debugMode = debugMode;
-
-        DatabaseType databaseType = DatabaseType.byName(databaseTyper);
+    private DatabaseHandler() {
         
-        if (databaseType != null) {
-            
-            try {
-                switch (databaseType) {
-                case MySQL:
-                    DatabaseHandler.abstractDatabase = new MySQLDatabase(host,
-                            port != -1 ? port : DatabaseType.MySQL.getDriverPort(),
-                            database, username,
-                            password);
-                    break;
-                case PostGRE:
-                    DatabaseHandler.abstractDatabase = new PostGREDatabase(host,
-                            port != -1 ? port : DatabaseType.PostGRE.getDriverPort(),
-                            database, username,
-                            password);
-                    break;
-                case SQLite:
-                    DatabaseHandler.abstractDatabase = new SQLiteDatabase(database, folder);
-                    break;
-                }
-
-                if (DatabaseHandler.abstractDatabase != null)
-                    DatabaseHandler.entryHandler = DatabaseHandler.abstractDatabase.getHandler();
-            } catch (SQLException exc) {
-                // Handling
-            }
-        } else {
-            // Handling
-            System.exit(-1);
-        }
-
-    }
-
-    public void onDisable() {
-        DatabaseHandler.abstractDatabase.shutdown();
-        DatabaseHandler.abstractDatabase = null;
-    }
-
-    public static AbstractDatabase get() {
-        return DatabaseHandler.abstractDatabase;
-    }
-
-    public static Connection getConnection() throws SQLException {
-        if (DatabaseHandler.abstractDatabase == null)
-            return null;
-        return DatabaseHandler.abstractDatabase.getConnection();
     }
 
     public static DatabaseHandler getInstance() {
+        if(DatabaseHandler.databaseHandler == null) {
+            DatabaseHandler.databaseHandler = new DatabaseHandler();
+        }
+        
         return DatabaseHandler.databaseHandler;
     }
-
-    /**
-     * Creates an extra SQLite Database besides the integrated opened database<br />
-     * Only use the entry handler over the internal funtion inside the
-     * SQLiteDatabase Object!
-     * 
-     * @param file
-     *            File Object
-     * @return SQLiteDatabase Object
-     * @throws SQLException
-     */
-    public static SQLiteDatabase getExtraMySQLDatabase(File file) throws SQLException {
-        return new SQLiteDatabase(file);
+    
+    public void createMySQL(String host, int port, String database, String username, String password) throws SQLException {
+        DatabaseHandler.abstractDatabase =
+            new MySQLDatabase(
+                host,
+                port != -1 ? port : DatabaseType.MySQL.getDriverPort(),
+                database,
+                username,
+                password
+            );
+    }
+    
+    public void createPostgreSQL(String host, int port, String database, String username, String password) throws SQLException {
+        DatabaseHandler.abstractDatabase =
+            new PostGREDatabase(
+                host,
+                port != -1 ? port : DatabaseType.PostGRE.getDriverPort(),
+                database,
+                username,
+                password
+            );
+    }
+    
+    public void createSQLite(File folder, String database) throws SQLException {
+        DatabaseHandler.abstractDatabase =
+            new SQLiteDatabase(
+                database,
+                folder
+            );
+    }
+    
+    public AbstractDatabase getAbstractDatabase() {
+        return DatabaseHandler.abstractDatabase;
     }
 
-    /**
-     * Returns the {@link EntryHandler} for working with the database
-     * 
-     * @return EntryHandler
-     * @deprecated use the EntryHandler over the
-     *             {@link AbstractDatabase#getHandler()} method
-     */
-    public static EntryHandler getHandler() {
-        return DatabaseHandler.entryHandler;
+    public Connection getConnection() throws SQLException {
+        if (DatabaseHandler.abstractDatabase == null)
+            return null;
+        return DatabaseHandler.abstractDatabase.getConnection();
     }
 }

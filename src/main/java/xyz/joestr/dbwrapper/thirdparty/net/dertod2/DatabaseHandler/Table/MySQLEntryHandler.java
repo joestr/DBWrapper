@@ -20,14 +20,14 @@ public class MySQLEntryHandler extends EntryHandler {
 
     public void insert(List<TableEntry> entryList)
             throws IllegalArgumentException, IllegalAccessException, SQLException {
-        Connection connection = DatabaseHandler.getConnection();
+        Connection connection = DatabaseHandler.getInstance().getConnection();
         for (TableEntry tableEntry : entryList)
             this.insert(tableEntry, connection);
         this.closeConnection(connection, null, null);
     }
 
     public void insert(TableEntry tableEntry) throws IllegalArgumentException, IllegalAccessException, SQLException {
-        Connection connection = DatabaseHandler.getConnection();
+        Connection connection = DatabaseHandler.getInstance().getConnection();
         this.insert(tableEntry, connection);
         this.closeConnection(connection, null, null);
     }
@@ -90,7 +90,7 @@ public class MySQLEntryHandler extends EntryHandler {
     }
 
     public void remove(TableEntry tableEntry, Map<String, Object> filterList) throws SQLException {
-        Connection connection = DatabaseHandler.getConnection();
+        Connection connection = DatabaseHandler.getInstance().getConnection();
         PreparedStatement preparedStatement = null;
 
         if (filterList != null && filterList.size() > 0) {
@@ -143,7 +143,7 @@ public class MySQLEntryHandler extends EntryHandler {
         if (!tableEntry.isLoadedEntry)
             return false;
 
-        Connection connection = DatabaseHandler.getConnection();
+        Connection connection = DatabaseHandler.getInstance().getConnection();
         PreparedStatement preparedStatement = null;
         boolean returnResult;
 
@@ -235,7 +235,7 @@ public class MySQLEntryHandler extends EntryHandler {
         if (specificRows == null || specificRows.isEmpty())
             throw new Exception("The specificRows argument can't be null");
 
-        Connection connection = DatabaseHandler.getConnection();
+        Connection connection = DatabaseHandler.getInstance().getConnection();
         PreparedStatement preparedStatement = null;
         boolean returnResult;
 
@@ -337,7 +337,7 @@ public class MySQLEntryHandler extends EntryHandler {
             loadHelper = new LoadHelper();
         loadHelper.limit(1).offset(0);
 
-        Connection connection = DatabaseHandler.getConnection();
+        Connection connection = DatabaseHandler.getInstance().getConnection();
         PreparedStatement preparedStatement = this.prepareSelect(connection, tableEntry, filterList, loadHelper);
         ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -365,7 +365,7 @@ public class MySQLEntryHandler extends EntryHandler {
             throw new NullPointerException("The resultList is NULL");
         resultList.clear(); // Clear the List - when not empty... not my problem
 
-        Connection connection = DatabaseHandler.getConnection();
+        Connection connection = DatabaseHandler.getInstance().getConnection();
         PreparedStatement preparedStatement = this.prepareSelect(connection, tableEntry, filterList, loadHelper);
         ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -465,7 +465,7 @@ public class MySQLEntryHandler extends EntryHandler {
     }
 
     public boolean exist(TableEntry tableEntry) throws SQLException, IllegalArgumentException, IllegalAccessException {
-        Connection connection = DatabaseHandler.getConnection();
+        Connection connection = DatabaseHandler.getInstance().getConnection();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         boolean returnResult;
@@ -523,7 +523,7 @@ public class MySQLEntryHandler extends EntryHandler {
     }
 
     public void updateLayout(TableEntry tableEntry) throws SQLException {
-        if (!DatabaseHandler.get().tableExist(tableEntry.getTableName())) {
+        if (!DatabaseHandler.getInstance().getAbstractDatabase().tableExist(tableEntry.getTableName())) {
             this.addTable(tableEntry);
             return;
         }
@@ -553,7 +553,7 @@ public class MySQLEntryHandler extends EntryHandler {
     }
 
     protected void addTable(TableEntry tableEntry) throws SQLException {
-        Connection connection = DatabaseHandler.getConnection();
+        Connection connection = DatabaseHandler.getInstance().getConnection();
         PreparedStatement preparedStatement = null;
 
         StringBuilder columnBuilder = new StringBuilder();
@@ -584,7 +584,7 @@ public class MySQLEntryHandler extends EntryHandler {
     }
 
     protected List<String> getTableColumns(String tableName) throws SQLException {
-        Connection connection = DatabaseHandler.getConnection();
+        Connection connection = DatabaseHandler.getInstance().getConnection();
 
         ResultSet resultSet = connection.getMetaData().getColumns(null, null, tableName, null);
         List<String> columnList = new ArrayList<String>();
@@ -597,7 +597,7 @@ public class MySQLEntryHandler extends EntryHandler {
     }
 
     protected void addColumn(TableEntry tableEntry, Column column) throws SQLException {
-        Connection connection = DatabaseHandler.getConnection();
+        Connection connection = DatabaseHandler.getInstance().getConnection();
         DataType dataType = column.entryType() != EntryType.Normal ? DataType.String : column.dataType();
 
         List<Column> layout = tableEntry.getPlainLayout();
@@ -618,7 +618,7 @@ public class MySQLEntryHandler extends EntryHandler {
     }
 
     protected void delColumn(String tableName, String columnName) throws SQLException {
-        Connection connection = DatabaseHandler.getConnection();
+        Connection connection = DatabaseHandler.getInstance().getConnection();
 
         PreparedStatement preparedStatement = connection
                 .prepareStatement("ALTER TABLE `" + tableName + "` DROP `" + columnName + "`;");

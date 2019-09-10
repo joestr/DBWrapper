@@ -529,7 +529,7 @@ public class SQLiteEntryHandler extends EntryHandler {
     }
 
     public void updateLayout(TableEntry tableEntry) throws SQLException {
-        if (!DatabaseHandler.get().tableExist(tableEntry.getTableName())) {
+        if (!DatabaseHandler.getInstance().getAbstractDatabase().tableExist(tableEntry.getTableName())) {
             this.addTable(tableEntry);
             return;
         }
@@ -601,7 +601,7 @@ public class SQLiteEntryHandler extends EntryHandler {
     }
 
     protected void addColumn(TableEntry tableEntry, Column column) throws SQLException {
-        Connection connection = DatabaseHandler.getConnection();
+        Connection connection = DatabaseHandler.getInstance().getConnection();
         DataType dataType = column.entryType() != EntryType.Normal ? DataType.String : column.dataType();
 
         List<Column> layout = tableEntry.getPlainLayout();
