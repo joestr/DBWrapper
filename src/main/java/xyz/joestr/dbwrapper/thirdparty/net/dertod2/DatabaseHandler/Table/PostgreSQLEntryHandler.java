@@ -29,7 +29,7 @@ import xyz.joestr.dbwrapper.thirdparty.net.dertod2.DatabaseHandler.Table.Column.
 // Differences: auto_increment -> dataType SERIAL or BIGSERIAL
 // so do this: primary keys and auto_increment ONLY as BIGSERIAL and NOT as int
 // also: postgres doesn't support the ` letter
-public class PostGREEntryHandler extends EntryHandler {
+public class PostgreSQLEntryHandler extends EntryHandler {
 
     public void insert(List<TableEntry> entryList)
             throws IllegalArgumentException, IllegalAccessException, SQLException {

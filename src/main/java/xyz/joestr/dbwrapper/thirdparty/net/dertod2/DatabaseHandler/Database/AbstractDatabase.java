@@ -6,7 +6,7 @@ import xyz.joestr.dbwrapper.thirdparty.net.dertod2.DatabaseHandler.Database.Pool
 import xyz.joestr.dbwrapper.thirdparty.net.dertod2.DatabaseHandler.Database.Pooler.PoolSettings;
 import xyz.joestr.dbwrapper.thirdparty.net.dertod2.DatabaseHandler.Table.EntryHandler;
 import xyz.joestr.dbwrapper.thirdparty.net.dertod2.DatabaseHandler.Table.MySQLEntryHandler;
-import xyz.joestr.dbwrapper.thirdparty.net.dertod2.DatabaseHandler.Table.PostGREEntryHandler;
+import xyz.joestr.dbwrapper.thirdparty.net.dertod2.DatabaseHandler.Table.PostgreSQLEntryHandler;
 import xyz.joestr.dbwrapper.thirdparty.net.dertod2.DatabaseHandler.Table.SQLiteEntryHandler;
 
 public abstract class AbstractDatabase {
@@ -95,8 +95,8 @@ public abstract class AbstractDatabase {
         case MySQL:
             this.entryHandler = new MySQLEntryHandler();
             break;
-        case PostGRE:
-            this.entryHandler = new PostGREEntryHandler();
+        case PostgreSQL:
+            this.entryHandler = new PostgreSQLEntryHandler();
             break;
         case SQLite:
             this.entryHandler = new SQLiteEntryHandler((SQLiteDatabase) this);

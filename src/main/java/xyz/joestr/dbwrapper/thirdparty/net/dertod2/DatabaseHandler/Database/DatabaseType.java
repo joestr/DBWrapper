@@ -1,8 +1,9 @@
 package xyz.joestr.dbwrapper.thirdparty.net.dertod2.DatabaseHandler.Database;
 
 public enum DatabaseType {
-    MySQL("com.mysql.jdbc.Driver", true, true, MySQLDatabase.class, 3306), PostGRE("org.postgresql.Driver", true, true,
-            PostGREDatabase.class, 5432), SQLite("org.sqlite.JDBC", true, false, SQLiteDatabase.class, null);
+    MySQL("com.mysql.jdbc.Driver", true, true, MySQLDatabase.class, 3306),
+    PostgreSQL("org.postgresql.Driver", true, true, PostgreSQLDatabase.class, 5432),
+    SQLite("org.sqlite.JDBC", true, false, SQLiteDatabase.class, null);
 
     private String driverPackage;
     private Class<? extends AbstractDatabase> driverClass;

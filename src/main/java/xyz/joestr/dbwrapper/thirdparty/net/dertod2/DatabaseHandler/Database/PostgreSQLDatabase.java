@@ -5,19 +5,19 @@ import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class PostGREDatabase extends AbstractDatabase {
+public class PostgreSQLDatabase extends AbstractDatabase {
 
-    public PostGREDatabase(String host, int port, String database, String username, String password)
+    public PostgreSQLDatabase(String host, int port, String database, String username, String password)
             throws SQLException {
         super(host, port, database, username, password);
     }
 
-    public PostGREDatabase(String host, String database, String username, String password) throws SQLException {
-        super(host, DatabaseType.PostGRE.getDriverPort(), database, username, password);
+    public PostgreSQLDatabase(String host, String database, String username, String password) throws SQLException {
+        super(host, DatabaseType.PostgreSQL.getDriverPort(), database, username, password);
     }
 
     public DatabaseType getType() {
-        return DatabaseType.PostGRE;
+        return DatabaseType.PostgreSQL;
     }
 
     protected String getConnectionString() {
