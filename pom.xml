@@ -107,6 +107,12 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.199</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.8.1</version>
@@ -161,11 +167,30 @@
                             <include>mysql:mysql-connector-java</include>
                             <include>org.postgresql:postgresql</include>
                             <include>org.xerial:sqlite-jdbc</include>
+                            <include>com.h2database:h2</include>
                         </includes>
                         <!--<excludes>
                             <exclude>*:*</exclude>
                         </excludes>-->
                     </artifactSet>
+                    <relocations>
+                        <relocation>
+                            <pattern>com.mysql</pattern>
+                            <shadedPattern>xyz.joestr.dbwrapper.thirdparty.com.mysql</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>org.postgresql</pattern>
+                            <shadedPattern>xyz.joestr.dbwrapper.thirdparty.org.postgresql</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>org.xerial</pattern>
+                            <shadedPattern>xyz.joestr.dbwrapper.thirdparty.org.xerial</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>com.h2database</pattern>
+                            <shadedPattern>xyz.joestr.dbwrapper.thirdparty.com.h2database</shadedPattern>
+                        </relocation>
+                    </relocations>
                     <shadedArtifactAttached>true</shadedArtifactAttached>
                 </configuration>
                 <executions>
