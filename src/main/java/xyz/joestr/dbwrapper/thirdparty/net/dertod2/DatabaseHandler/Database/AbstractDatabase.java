@@ -21,8 +21,23 @@ public abstract class AbstractDatabase {
 
     protected EntryHandler entryHandler;
 
-    public AbstractDatabase(String host, Integer port, String database, String username, String password)
-            throws SQLException {
+    /**
+     * An abstract representation of the database.
+     * 
+     * @param host The hostname
+     * @param port The port
+     * @param database The database name
+     * @param username The username
+     * @param password The password
+     * @throws SQLException If an SQL relevant error occours
+     */
+    public AbstractDatabase(
+        String host,
+        Integer port,
+        String database,
+        String username,
+        String password
+    ) throws SQLException {
         this.host = host;
         this.port = port;
 
