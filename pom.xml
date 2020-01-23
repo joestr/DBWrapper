@@ -47,7 +47,7 @@
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
-            <name>Sonatype Central Repository</name>
+            <name>Sonatype Snapshot Repository</name>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
         <repository>
