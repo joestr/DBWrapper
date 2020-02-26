@@ -15,7 +15,7 @@ import xyz.joestr.dbwrapper.DatabaseConnectionHandler;
  *
  * @author Joel
  */
-public class DatabaseWrapperTest {
+public class TestPersistence {
 
     @Test
     public void notAPersitentConnectionByDefault() {

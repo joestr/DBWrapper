@@ -327,7 +327,7 @@ public class DatabaseAnnotationWrapper<T> {
      */
     private void resolveDatabaseColumnNamesAndClassFieldNames() {
 
-        for (Field f : this.clazz.getFields()) {
+        for (Field f : this.clazz.getDeclaredFields()) {
 
             f.setAccessible(true);
             if (f.isAnnotationPresent(WrappedField.class)) {
