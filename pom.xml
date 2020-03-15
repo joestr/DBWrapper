@@ -4,7 +4,7 @@
     
     <groupId>xyz.joestr</groupId>
     <artifactId>dbwrapper</artifactId>
-    <version>0.1.4-SNAPSHOT</version>
+    <version>0.2.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     
     <name>DBWrapper</name>
@@ -87,32 +87,6 @@
     
     <dependencies>
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.17</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>9.3-1102-jdbc41</version>
-            <type>jar</type>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.xerial</groupId>
-            <artifactId>sqlite-jdbc</artifactId>
-            <version>3.8.7</version>
-            <type>jar</type>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>1.4.199</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.8.1</version>
@@ -157,51 +131,6 @@
     
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.1</version>
-                <configuration>
-                    <artifactSet>
-                        <includes>
-                            <include>mysql:mysql-connector-java</include>
-                            <include>org.postgresql:postgresql</include>
-                            <include>org.xerial:sqlite-jdbc</include>
-                            <include>com.h2database:h2</include>
-                        </includes>
-                        <!--<excludes>
-                            <exclude>*:*</exclude>
-                        </excludes>-->
-                    </artifactSet>
-                    <relocations>
-                        <relocation>
-                            <pattern>com.mysql</pattern>
-                            <shadedPattern>xyz.joestr.dbwrapper.thirdparty.com.mysql</shadedPattern>
-                        </relocation>
-                        <relocation>
-                            <pattern>org.postgresql</pattern>
-                            <shadedPattern>xyz.joestr.dbwrapper.thirdparty.org.postgresql</shadedPattern>
-                        </relocation>
-                        <relocation>
-                            <pattern>org.xerial</pattern>
-                            <shadedPattern>xyz.joestr.dbwrapper.thirdparty.org.xerial</shadedPattern>
-                        </relocation>
-                        <relocation>
-                            <pattern>com.h2database</pattern>
-                            <shadedPattern>xyz.joestr.dbwrapper.thirdparty.com.h2database</shadedPattern>
-                        </relocation>
-                    </relocations>
-                    <shadedArtifactAttached>true</shadedArtifactAttached>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
